@@ -40,6 +40,9 @@ import azure.cognitiveservices.speech as speechsdk
 import os
 import subprocess
 import stanfordnlp
+import requests
+import shutil # - - This module helps to transfer information from 1 file to another 
+from bs4 import BeautifulSoup
 from operator import itemgetter, attrgetter, methodcaller
 import speech_recognition as sr
 
@@ -48,19 +51,12 @@ stanfordnlp.download('en')   # This downloads the English models for the neural 
 # Sets up a neural pipeline in English
 nlp = stanfordnlp.Pipeline(processors='tokenize,mwt,pos,lemma,depparse', treebank='en_ewt', use_gpu=False, pos_batch_size=3000) # Build the pipeline, specify part-of-speech processor's batch size
 
+
 def getSpeech():
+  text="Hello"
+  return text
 
-  print("Say something to translate...")
-
-  with sr.Microphone() as source:
-    # read the audio data from the default microphone
-    audio_data = r.record(source, duration=5)
-    print("Recognizing...")
-    # convert speech to text
-    text = r.recognize_google(audio_data)
-    #print(text)
-    return text
-
+#   
 def parse(text):
   # Process text input
   doc = nlp(text) # Run the pipeline on text input
@@ -89,6 +85,8 @@ def parse(text):
 
   return doc
 
+
+# add a word into the dictionary and return dictionary
 def wordToDictionary(word):
   dictionary = {
     'index': word.index,
@@ -103,7 +101,7 @@ def wordToDictionary(word):
   }
   return dictionary
 
-
+# order words? for grammar? returns reordered structure
 def getMeta(sentence):
   # sentence.print_dependencies()
   englishStruct = {}
@@ -163,6 +161,7 @@ def getMeta(sentence):
   # print("\n", aslStruct, "\n")
   return reordered
 
+# get tone of sequence returns the translation and tone
 def getLemmaSequence(meta):
   tone = ""
   translation = []
@@ -266,11 +265,29 @@ def translate(parse):
   translation = getLemmaSequence(meta)
   return translation
 
-def display(translation):
+def get_url():
+# # Web URL
+  base_Web_url = "https://www.signasl.org/sign/"
+# search_word= input('Enter a search word: ' )
+  Web_url= base_Web_url + translation
+# # Get URL Content
+  r = requests.get(Web_url)
+# # Parse HTML Code
+  soup = BeautifulSoup(r.content, 'html.parser')
+# # List of all video tag
+  video_tags = soup.findAll('video')
+  video_urls = soup.findAll('source')
+# #print(video_urls)
+  url = []
+  for vid in soup.find_all('source'):
+      url = vid['src']
+  return url
+
+def display(translation, url):
   folder = os.getcwd()
-  filePrefix = folder + "/videos/"
-  # Alter ASL lemmas to match sign's file names.
-  # In production, these paths would be stored at the dictionary's database.
+#   filePrefix = folder + "/QuickASL/videos/"
+#   # Alter ASL lemmas to match sign's file names.
+#   # In production, these paths would be stored at the dictionary's database.
   files = [ filePrefix + word['text'].lower() + "_.mp4" for word in translation[0] ]
   # Run video sequence using the MLT Multimedia Framework
   print("Running command: ", ["melt"] + files)
