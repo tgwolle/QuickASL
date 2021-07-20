@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <!-- Title for page -->
+  <h1>{% block title %}Learn ASL{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <!-- left and right split -->
+  
+<h2> Click the microphone to begin recording.</h2>
+  <div class="container">
+    <div class= "split left">   <!-- Recording, audio and translation to text -->
+
+      <div class="centered">
+        <h2> <img src="static/custom_mic.png" alt="Microphone begin recording" width= "50" height="50">  Audio to text</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+        <!--
+          <h2>{{ songName }}</h2>
+          <audio src="{{url_for('static', filename=file) }}" type="audio/x-wav" controls autoplay="autoplay">
+            <p>Your browser does not support the audio element </p>
+            <source src="{{url_for('static', filename=file) }}">
+          </audio> 
+       -->
+      </div>
+    </div> 
+    <div class= "split right"><!-- Translation of text to images/visual output -->
+      <div class="centered">
+        <h2> Visual output</h2>
+        <p>
+          <!-- To add images use this -->
+          <!--
+            <img src="static/file_name" alt="" width= "" height="">
+          -->
+          perhaps some images...
+        </p>
+      </div>
+    </div> 
+  </div>
+
+{% endblock %}
