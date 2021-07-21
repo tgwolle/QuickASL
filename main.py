@@ -11,6 +11,7 @@ import requests
 app = Flask(__name__)
 turbo = Turbo(app)
 proxied= FlaskBehindProxy(app)
+
 letters = {
   "A": "static/images/A.png",
   "B": "static/images/B.png",
@@ -46,10 +47,13 @@ letters = {
  
 }
 
+# stores list of the image links to the letters from user input globally
+user_words = [""]
 
 @app.route("/")                          # this tells you the URL the method below is related to
 def home():
-    return render_template('index.html', subtitle= 'Home Page')
+    user_words.clear()
+    return render_template('index.html', subtitle='Home Page')
    
 @app.route("/learn-more")
 def about():
@@ -57,11 +61,13 @@ def about():
    
 @app.route("/main_page", methods=['GET'])
 def main_page():
-    return render_template('main_page.html')
-  
-# @app.route("/main_page")
-# def main_page():
-#     return render_template('main_page.html', subtitle='Main Page')
+    todos = user_words
+    print(todos)
+#     if todos == None:
+#             flash(f'Input cannot be empty', 'failed')
+#             return redirect(url_for('main_page'))
+    return render_template('main_page.html',todos=todos)
+#   return render_template('main_page.html', subtitle='Main Page')
   
 '''def processInput(ls):
   output_list=[]
@@ -71,26 +77,101 @@ def main_page():
     output_list.append(letters["empty"]) 
   return output_list
   '''
+
+# Clears images from display
+# test redirect works
+@app.route('/clear_images')
+def clear_images():
+    user_words.clear()
+    return redirect(url_for('main_page'))
+
+# returns true if input is valid  
+def is_valid_input(x):
+  is_valid_input = True
+  for l in x:
+    if l not in letters:
+      return False 
+  return is_valid_input
   
-# returns list of words from input in upper case.
+def get_input():
+  input = user_words
+#    with app.test_request_context():
+#         from flask import request
+#         input = request.form.get('user_input')
+  print(input)
+  return input
+
+# V3  
+# Check that input is valid: can't be numbers 
+#   Test could be check what happens when enter valid input/ invalid
+# Processes the input information and displays it.
 @app.route('/process_query', methods=['POST'])
 def process_query():
-    #data = flask.request.form  # is a dictionary
-    #input = data['user_input']
-    input= "H"
-    input_in_list = input.upper().split(' ') 
-    output_list=[]
-    for word in input_in_list:
-      for letter in word:
-        output_list.append(letters[letter])
-      output_list.append(letters["empty"])
-      
-    #print("letter"+ input)
-    #print(output_list)
-    #same= '<img src="' + str(output_list[0]) + '"/>'
-    #print(same)
-    return render_template('main_page.html', same=output_list)
+  text = request.form.get('user_input')
+  words = text.upper().split(' ')
+  try:
+    user_words.remove("")
+  except:
+    print("empty not found")
+  for word in words:
+    for letter in word:
+      user_words.append(letters[letter])
+    user_words.append(letters["empty"])
+#     if form.validate_on_submit()
+
+  return redirect(url_for('main_page'))
+
+#   if is_valid_input(user_words):
+#     return redirect(url_for('main_page'))
+#   else:
+#     flash(f'Input is invalid', 'error')
+#     return redirect(url_for('main_page'))
+      # This is probably where we would add the flash
+      #  if is_valid_input(user_words) redirect else flash statement
+    
   
+# if page not found direct to page not found page
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+# if bad direct request redirect to error page
+@app.errorhandler(400)
+def page_not_found(e):
+    return render_template('400.html'), 400
+
+# if error direct to error page
+@app.errorhandler(500)
+def page_not_found(e):
+  return render_template('500.html'), 500
+
+# if flask error direct user to error page
+@app.errorhandler(Exception)
+def page_not_found(e):
+  return render_template('500.html'), 500
+
+
+# returns list of words from input in upper case.
+# V2
+# @app.route('/process_query', methods=['POST'])
+# def process_query():
+#     #data = flask.request.form  # is a dictionary
+#     #input = data['user_input']
+#     input= "H"
+#     input_in_list = input.upper().split(' ') 
+#     output_list=[]
+#     for word in input_in_list:
+#       for letter in word:
+#         output_list.append(letters[letter])
+#       output_list.append(letters["empty"])
+      
+#     #print("letter"+ input)
+#     #print(output_list)
+#     #same= '<img src="' + str(output_list[0]) + '"/>'
+#     #print(same)
+#     return render_template('main_page.html', same=output_list)
+
+# V1
 # @app.route("/process", methods=['GET', 'POST'])   
 # def process_query():
 #     form = processForm()
@@ -109,31 +190,6 @@ def process_query():
 #       print(same) 
 #       return render_template('main_page.html', same=same)
 #       return render_template('process.html', title='Process', form=form, same=same )
-  
-@app.errorhandler(404)
-def page_not_found(e):
-  return render_template('404.html'), 404
-
-@app.errorhandler(400)
-def page_not_found(e):
-  return render_template('400.html'), 400
-
-# # if error direct to error page
-# @app.errorhandler(500)
-# def page_not_found(e):
-#   return render_template('500.html'), 500
-
-# # if flask error direct user to error page
-# @app.errorhandler(Exception)
-# def page_not_found(e):
-#   return render_template('500.html'), 500
-
-
-
-        
-        
-        
-
   
 if __name__ == '__main__':               # this should always be at the end
     app.run(debug=True, host="0.0.0.0")

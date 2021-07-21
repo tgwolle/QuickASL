@@ -2,32 +2,47 @@
 
 {% block header %}
     <!-- Title for page -->
-  <h1>{% block title %}Learn ASL{% endblock %}</h1>
+  <h1>{% block title %}Learn ASL Alphabet{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
     <!-- left and right split -->
   
-<h2> Click the microphone to begin recording.</h2>
   <div class="container">
     <div class="split left">
-     <div class="centered">
-       <form action="/process_query" method="Post">
+     <div class="centered"><!-- Get user input -->
+<!--        <form action="/process_query" method="Post">
          <h1 id="header">Enter your text below:</h1>
          <input type="text" name="user_input"><br>
-       </form>     
+       </form>      -->
+      <h2> Text Input: </h2>
+       {% if error %}
+          <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
+            
+       <form action= "{{url_for('process_query')}}" method="POST" role= "form" >
+             <input name= "user_input" type="text" class="form-control" placeholder="Enter a word or phrase to learn" min="1" max="500">
+             <button type="submit" id= "add btn"> Submit</button>
+        </form>
+               <a href="{{ url_for('clear_images')}}"><button type= "clear">Clear Search</button></a> 
      </div>
    </div>
+    
     <div class= "split right"><!-- Translation of text to images/visual output -->
       <div class="centered">
         <h2> Visual output</h2>
         <div>
-          {{ same }}
-         <img src="static/images/A.png"/>
+<!--<img src="static/images/A.png"/> -->
+          {% for todo in todos %}
+            <li class="list-group-item">
+                <img src="{{todo}}"/>
+            </li> 
+          {% endfor %}
           
         </div>  
       </div>
     </div> 
+    
   </div>
 
 {% endblock %}
