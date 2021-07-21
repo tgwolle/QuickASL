@@ -1,0 +1,12 @@
+#import some basics
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
+
+
+
+#Create some fields
+# Datarequired means field cant be empty
+class processQuery(FlaskForm):
+  enter = StringField('Input', validators=[DataRequired(), Length(min=1, max=20)])
+  submit = SubmitField('Enter')   

@@ -10,32 +10,22 @@
   
 <h2> Click the microphone to begin recording.</h2>
   <div class="container">
-    <div class= "split left">   <!-- Recording, audio and translation to text -->
-
-      <div class="centered">
-        <h2> <img src="static/custom_mic.png" alt="Microphone begin recording" width= "50" height="50">  Audio to text</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-        <!--
-          <h2>{{ songName }}</h2>
-          <audio src="{{url_for('static', filename=file) }}" type="audio/x-wav" controls autoplay="autoplay">
-            <p>Your browser does not support the audio element </p>
-            <source src="{{url_for('static', filename=file) }}">
-          </audio> 
-       -->
-      </div>
-    </div> 
+    <div class="split left">
+     <div class="centered">
+       <form action="/process_query" method="Post">
+         <h1 id="header">Enter your text below:</h1>
+         <input type="text" name="user_input"><br>
+       </form>     
+     </div>
+   </div>
     <div class= "split right"><!-- Translation of text to images/visual output -->
       <div class="centered">
         <h2> Visual output</h2>
-        <p>
-          <!-- To add images use this -->
-          <!--
-            <img src="static/file_name" alt="" width= "" height="">
-          -->
-          <blockquote class="signasldata-embed" data-vidref="h3mzalqvez"><a href="https://media.signbsl.com/videos/asl/elementalaslconcepts/mp4/his.mp4">Watch how to sign 'because' in American Sign Language</a></blockquote>
+        <div>
+          {{ same }}
+         <img src="static/images/A.png"/>
           
-          perhaps some images...
-        </p>
+        </div>  
       </div>
     </div> 
   </div>

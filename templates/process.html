@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block header %}
+    <!-- Title for page -->
+  <h1>{% block title %}Learn ASL{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="content-section">
+      <div class="split left">
+       <div class="centered">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+               <div class="form-group">
+                 {{ form.enter.label(class="form-control-label") }}
+                 {% if form.enter.errors %}
+                 {{ form.enter(class="form-control form-control-lg is-invalid") }}
+                 <div class="invalid-feedback">
+                   {% for error in form.enter.errors%}
+                   <span>{{error}}</span>
+                   {% endfor %}
+                 </div>
+                 {% else %}
+                     {{ form.enter(class="form-control form-control-lg") }}
+                 {% endif %}
+              </div>
+          </fieldset>
+          <div class="form-group">
+             {{ form.submit(class="btn btn-outline-info") }}
+          </div>
+         </form>
+     </div>
+    </div>
+      <div class= "split right"><!-- Translation of text to images/visual output -->
+      <div class="centered">
+        <h2> Visual output</h2>
+        <div>
+          {{ same }}
+<!--           <img src="static/images/A.png"/>
+           -->
+        </div>  
+      </div>
+    </div> 
+   </div>
+     
+ {% endblock content %}
