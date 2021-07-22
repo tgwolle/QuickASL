@@ -7,7 +7,7 @@
 
 {% block content %}
     <!-- left and right split -->
-  
+
   <div class="container" id="split_cont">
     <div class="split left">
 <!--        <form action="/process_query" method="Post">
@@ -20,7 +20,7 @@
         {% endif %}
             
        <form action= "{{url_for('process_query')}}" method="POST" role= "form" >
-             <input name= "user_input" type="text" pattern="[A-Za-z?.!, ]{1,50}" class="form-control" placeholder="Enter a word or phrase to learn" title=" Enter only letters and . ? !, e.g Hi!">
+             <input name= "user_input" type="text" pattern="[A-Za-z?.!, ]{1,30}" class="form-control" placeholder="Enter a word or phrase to learn" title=" Enter only letters and . ? !,maximum of 30 characters  e.g Hi!">
 
          <button type="submit" id= "addbtn"> Submit</button>
           <a href="{{ url_for('clear_images')}}"><button type= "clear" id="clearbtn">Clear Search</button></a> 
@@ -31,13 +31,10 @@
     <div class= "split right"><!-- Translation of text to images/visual output -->
         <h2> Visual output</h2>
         <div>
-<!--<img src="static/images/A.png"/> -->
-          {% for todo in todos %}
-         
-            <li class="list-group-item">
-                <img src="{{todo}}"/>
-            </li> 
-         
+          {% for todo in todos  %}               
+          <li class="list-group-item">
+             <img src="{{todo}}" style="height: 65px; width:65px;"/>        
+          </li>
           {% endfor %}
           
       </div>

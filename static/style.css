@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .split{
   height: 90%;
-  width: 40%;
+  /*width: 40%;*/
   position: fixed;
   z-index: 1;
   top: 10px;
@@ -68,7 +68,12 @@ h1, h2, h3, h4, h5, h6 {
 .left {
   overflow-y: hidden;
   left: 10px;
+  width: 30%;
 }
+.right {
+  width: 60%;
+}
+
 
 #addbtn {
     width: 150px;

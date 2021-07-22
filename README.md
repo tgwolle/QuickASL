@@ -7,6 +7,7 @@ or find helpful resources to other ASL learning websites.
 
 ## Installation
 This application runs best on python version 2.7 or higher.
+Download all template and static files. As well as main.py.
 You will likely need to install the following:
 
 ```bash
@@ -21,6 +22,10 @@ Run the following in the terminal:
 ```python
 python3 main.py
 ```
+
+Once that is running naviate the page by pressing the start learning button.
+The user will be prompted to enter a word or a phrase. Click submit to get visual display.
+After words or phrases click clear, to erase previous images.
 
 ## Project Status
 
