@@ -43,7 +43,7 @@ letters = {
   ",": "static/images/comma.png",
   "?": "static/images/qs.png",
   "!": "static/images/exc.png",
-  "empty":"static/images/empty.png"
+  "+":"static/images/empty.png"
  
 }
 
@@ -108,15 +108,15 @@ def get_input():
 @app.route('/process_query', methods=['POST'])
 def process_query():
   text = request.form.get('user_input')
-  words = text.upper().split(' ')
+  
+  words = text.upper().replace(" ","+")
   try:
     user_words.remove("")
   except:
     print("empty not found")
-  for word in words:
-    for letter in word:
-      user_words.append(letters[letter])
-    user_words.append(letters["empty"])
+  #output_list=[]
+  for character in words:
+      user_words.append(letters[character])
 #     if form.validate_on_submit()
 
   return redirect(url_for('main_page'))

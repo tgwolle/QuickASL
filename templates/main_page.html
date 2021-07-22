@@ -8,9 +8,8 @@
 {% block content %}
     <!-- left and right split -->
   
-  <div class="container">
+  <div class="container" id="split_cont">
     <div class="split left">
-     <div class="centered"><!-- Get user input -->
 <!--        <form action="/process_query" method="Post">
          <h1 id="header">Enter your text below:</h1>
          <input type="text" name="user_input"><br>
@@ -21,28 +20,30 @@
         {% endif %}
             
        <form action= "{{url_for('process_query')}}" method="POST" role= "form" >
-             <input name= "user_input" type="text" class="form-control" placeholder="Enter a word or phrase to learn" min="1" max="500">
-             <button type="submit" id= "add btn"> Submit</button>
+             <input name= "user_input" type="text" pattern="[A-Za-z?.!, ]{1,50}" class="form-control" placeholder="Enter a word or phrase to learn" title=" Enter only letters and . ? !, e.g Hi!">
+
+         <button type="submit" id= "addbtn"> Submit</button>
+          <a href="{{ url_for('clear_images')}}"><button type= "clear" id="clearbtn">Clear Search</button></a> 
+
         </form>
-               <a href="{{ url_for('clear_images')}}"><button type= "clear">Clear Search</button></a> 
-     </div>
    </div>
     
     <div class= "split right"><!-- Translation of text to images/visual output -->
-      <div class="centered">
         <h2> Visual output</h2>
         <div>
 <!--<img src="static/images/A.png"/> -->
           {% for todo in todos %}
+         
             <li class="list-group-item">
                 <img src="{{todo}}"/>
             </li> 
+         
           {% endfor %}
           
-        </div>  
       </div>
     </div> 
     
   </div>
+
 
 {% endblock %}

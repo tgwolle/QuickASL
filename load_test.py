@@ -35,17 +35,18 @@ letters = {
   ",": "images/comma.png",
   "?": "images/qs.png",
   "!": "images/exc.png",
-  "empty":"images/empty.png"
+  "+":"images/empty.png"
+  
  
 }
 
-input = 'hello world'
-list = input.upper().split(' ')
+input = ''
+list = input.upper().replace(" ","+")
+
 output_list=[]
 for word in list:
-    for letter in word:
-      output_list.append(letters[letter])
-    output_list.append(letters["empty"])  
+      output_list.append(letters[word])
+      
       
 print(output_list)
 
