@@ -19,7 +19,7 @@ jobs:
           pip3 install flask-wtf
           pip3 install flask-sqlalchemy
       - name: Test webpages
-        run: python3 QuickASL/tests/page_loading_tests.py
+        run: python3 QuickASL/page_loading_tests.py
         
       - name: Test data validation
-        run: python3 QuickASL/tests/test_user_input.py
+        run: python3 QuickASL/test_user_input.py

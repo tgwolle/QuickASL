@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* .button1 {
+ .button1 {
   
   background-color: #404FD7;
   margin: 0;
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #404FD7;
   
 } 
- */
+ 
 
 /*Main page css  */
 #split_cont{
@@ -120,7 +120,17 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
 }
-
+h4 {
+    position: absolute;
+    padding: 10px 10px;
+    color: #fff;
+    white-space: nowrap;
+    /* font-size: 7.5vw; */
+    font-size: 2em;
+    margin-top: 10%;
+    margin-bottom: 12%;
+    z-index: 9;
+}
 .display h1{
   position:absolute;
   padding: 10px 10px ;
@@ -128,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
   font-size: 7.5vw;
   font-size: 3em;
-  margin-bottom: 10%; 
+  margin-bottom: 20%;
   z-index:9;
   
 }
