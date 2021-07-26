@@ -38,10 +38,10 @@ letters = {
   "X":"static/images/X.png",
   "Y":"static/images/Y.png",
   "Z":"static/images/Z.png",
-  ".": "static/images/period.png",
-  ",": "static/images/comma.png",
-  "?": "static/images/qs.png",
-  "!": "static/images/exc.png",
+  ".":"static/images/period.png",
+  ",":"static/images/comma.png",
+  "?":"static/images/qs.png",
+  "!":"static/images/exc.png",
   "+":"static/images/empty.png"
  
 }

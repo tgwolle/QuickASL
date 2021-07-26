@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+/*base css*/
+section{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  z-index:10000
+}
+.content{
+  min-height: 100vh;
+  background: linear-gradient(#404FD7, #b3c6ed);
+}
+
+header{
+  position:absolute
+  color: #fff;
+  white-space: nowrap;
+  font-size: 7.5vw;
+  font-size: 1.5em;  
+  z-index:9;
+}
+
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: -5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+.bg-steel {
+  background-color: #4554d7;
+}
+
+
+/* .button1 {
+  
+  background-color: #404FD7;
+  margin: 0;
+  top: 55%;
+  right:40%;
+  border-radius: 12px;
+  border-color: #404FD7;
+  
+} 
+ */
+
+/*Main page css  */
+#split_cont{
+  width: 100%;
+  height: 100vh;
+    
+}
+
+.split{
+  height: 90%;
+  /*width: 40%;*/
+  position: fixed;
+  z-index: 1;
+  top: 10px;
+  overflow-x: hidden;
+  padding: 20% 5px;
+}
+
+.left {
+  overflow-y: hidden;
+  left: 10px;
+  width: 30%;
+}
+.right {
+  width: 60%;
+}
+
+
+#addbtn {
+    width: 150px;
+    height: 30px;
+    background: #3b48bf;
+    border-radius: 6px;
+    color: white;
+}
+#clearbtn{
+  width: 150px;
+    height: 30px;
+    background: #3b48bf;
+    border-radius: 6px;
+    color: white;
+}
+.right {
+
+  right: 10px;
+}
+
+.split h2{
+  display: inline-block;
+  vertical-align: top;
+  line-height: normal;
+  
+}
+
+/* .display {
+  min-height: 100%;
+  background-color: #FF1493
+  background-size: cover;
+  align-items: center;
+  text-align: center;
+  padding-top:40%;
+} */
+
+/*Index.html css  */
+.display{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding 100px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display h1{
+  position:absolute;
+  padding: 10px 10px ;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 7.5vw;
+  font-size: 3em;
+  margin-bottom: 10%; 
+  z-index:9;
+  
+}
+
+.display h2{
+  margin-top: 30%;
+  position:absolute;
+  padding: 10px 10px ;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 7.5vw;
+  font-size: 1.5em;  
+  z-index:9;
+  
+}
+
+.display .button1{
+  margin-top: 80px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 40px;
+  background: #fff;
+  background-color: #b3c6ed;
+  font-size: 1.5em;
+}
+
+.sec{
+  position: relative;
+  padding: 100px;
+  background: #b3c6ed;
+  
+}
+
+.sec h2{
+  font-size: 3.5em;
+  margin-bottom: 10px;
+  color:#2b1055: 
+}
+
+.sec p{
+  font-size: 1.2em;
+  color:#2b1055: 
+}
+
+/*  Header*/
+
+.navbar-dark .navbar-brand{
+  color: #4554d7;
+  font-weight: bold;
+  background-color: #b4c6ed;
+  padding: 10px;
+  border-radius: 30px;
+}
+.site-header .navbar-nav .nav-link {
+  color: #444444;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+/* about.html css  */
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+  padding-top: 5%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+.card h2{
+  margin-top:20px;
+}
+
+.card button{
+  margin-bottom: 80px;
+}
+
+/* Error pages css  */
+
+.container2{
+    margin-top: 70px;
+    width: 100%;
+    height: 100%;
+    padding: 30%;
+    text-align: center;
+}
+button.button.button2 {
+    padding: 7px;
+    border-radius: 5px;
+    background-color: #404FD7;
+}
+
+.container2 h1 {
+    font-size: 96px;
+}
+.list-group-item {
+  position: relative;
+  display: inline-flex;
+  color: #212529;
+  text-decoration: none;
+  flex-direction: row;
+}
